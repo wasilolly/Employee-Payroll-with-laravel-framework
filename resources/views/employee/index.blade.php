@@ -1,0 +1,55 @@
+@extends('layouts.app')
+
+
+@section('content')
+
+	<div class="col-lg-12">
+		<h1 class="page-header">Employees	
+			<!--input type="text" id="filterInput" onkeyup="filterFunction()" placeholder="Search Employees...."-->
+		</h1>	
+	</div>
+	
+	<a href="{{ route('employees.create') }}" class="btn btn-primary">Create</a>
+	<a href="{{ route('employees.bin') }}" class="btn btn-danger">Recycle Bin</a>
+	
+	<br>
+	<br>
+	<table class= "table table-hover" id="filterTable">
+		<thead>					
+			<th>Name</th>
+			<th>Email</th>
+			<th>Role</th>
+			<th>Edit</th>	
+			<th>Trash</th>
+		</thead>		
+			
+		<tbody>
+			@if($employees->count()> 0)
+				@foreach($employees as $employee)
+					<tr>								
+						<td><a href="{{ route('employees.show', ['id' => $employee->id]) }}">{{ $employee->name }}</a></td>
+						<td>{{ $employee->email }}</td>
+						<td>{{ $employee->role->name }}</td>
+						<td>
+							<a href="{{ route('employees.edit', ['id' => $employee->id]) }}" class="btn btn-info">Edit</a>
+						</td>
+						<td>
+							<form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="POST">
+								{{csrf_field() }}
+								{{method_field('DELETE')}}
+								<button class="btn btn-danger">Bin</button>
+							</form>
+						</td>
+						<td>
+							<a href="{{ route('payroll.edit', ['id' => $employee->id]) }}" class="btn btn-info">Payroll</a>
+						</td>
+					</tr>
+				@endforeach
+			@else
+				<tr> 
+					<th colspan="5" class="text-center">Empty</th>
+				</tr>
+			@endif
+		</tbody>						
+	</table>		
+@endsection
