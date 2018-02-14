@@ -17,9 +17,12 @@ class CreatePayrollsTable extends Migration
             $table->increments('id');
 			$table->integer('employee_id');
 			$table->boolean('over_time')->default(0);
+			$table->boolean('notified')->default(0);
 			$table->integer('hours')->nullable();
 			$table->integer('rate')->nullable();
-			$table->integer('gross')->nullable();			
+			$table->integer('gross')->nullable();	
+			
+			$table->softDeletes();
             $table->timestamps();
         });
     }

@@ -31,8 +31,8 @@ class EmployeeController extends Controller
     {
         $roles=Role::all();
 		if($roles->count()==0){
-			Session::flash('Success', 'you must have at least 1 department/role created before attempting to create an employee');
-			return redirect()->route('roles.create');
+			Session::flash('Success', 'you must have at least 1 role created before attempting to create an employee');
+			return redirect()->back();
 		}
         return view('employee.create')->with('roles',$roles);
     }
@@ -167,7 +167,10 @@ class EmployeeController extends Controller
 	
 	public function kill($id){
 		$employee=Employee::withTrashed()->where('id', $id)->first();
-		$employee->payroll->delete();
+		foreach($employee->payrolls as $payroll):
+			$payroll->delete();
+		endforeach;
+		
 		$employee->forceDelete();
 		
 		Session::flash('success', 'The employee account has been permanently destroyed.');

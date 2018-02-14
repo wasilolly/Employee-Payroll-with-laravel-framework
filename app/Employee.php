@@ -14,13 +14,13 @@ class Employee extends Model
 	protected $fillable=['name','slug','role_id','email','full_time',
 		'street','town','city','country'];
 	
-	public $with = ['role','payroll'];
+	public $with = ['role','payrolls'];
 	
 	public function role(){
 		return $this->belongsTo('App\Role');
 	}
 	
-	public function payroll(){
-		return $this->hasOne('App\Payroll');
+	public function payrolls(){
+		return $this->hasMany('App\Payroll');
 	}
 }

@@ -31,7 +31,7 @@ class RoleController extends Controller
 		if($departments->count() ==0)
 		{
 			Session::flash('info', 'you must have at least 1 department created before attempting to create a role');
-			return redirect()->route('departments.create');
+			return redirect()->back();
 		}
 		return view('role.create')->with('departments', $departments);
     }

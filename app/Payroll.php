@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payroll extends Model
 {
-    protected $fillable=['employee_id','over_time','hours','rate','total'];
+    use SoftDeletes;
+	
+	protected $dates = ['deleted_at'];
+	
+	protected $fillable=['employee_id','over_time','hours','rate','total'];
 	
 	public function employee(){
 		return $this->belongsTo('App\Employee');

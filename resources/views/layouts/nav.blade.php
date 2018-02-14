@@ -22,7 +22,7 @@
 				<li><a href="{{ route('departments.index') }}">Departments</a></li>
 				<li><a href="{{ route('roles.index') }}">Roles</a></li>
 				<li><a href="{{ route('employees.index') }}">Employees</a></li>
-				<li><a href="{{ route('payroll.index') }}">Payroll</a></li>
+				<li><a href="{{ route('payrolls.index') }}">Payroll</a></li>
 			</ul>
 
 			<!-- Right Side Of Navbar -->

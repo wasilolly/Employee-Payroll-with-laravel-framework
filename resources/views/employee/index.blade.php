@@ -41,7 +41,7 @@
 							</form>
 						</td>
 						<td>
-							<a href="{{ route('payroll.edit', ['id' => $employee->id]) }}" class="btn btn-info">Payroll</a>
+							<a href="{{ route('payrolls.show', ['id' => $employee->id]) }}" class="btn btn-info">Payroll</a>
 						</td>
 					</tr>
 				@endforeach

@@ -19,21 +19,30 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function () {
-    return App\Employee::find(6);
-});
-
 Route::get('/employees/bin', 'EmployeeController@bin')->name('employees.bin');
 Route::get('/employees/restore/{id}', 'EmployeeController@restore')->name('employees.restore');
 Route::get('/employees/kill/{id}', 'EmployeeController@kill')->name('employees.kill');
 
-Route::get('/payroll', 'PayrollController@index')->name('payroll.index');
-Route::get('/payroll/{id}', 'PayrollController@edit')->name('payroll.edit');
-Route::post('/payroll/update/{id}', 'PayrollController@update')->name('payroll.update');
+Route::get('/payroll', 'PayrollController@index')->name('payrolls.index');
+Route::get('/employee/payroll/{id}', 'PayrollController@showIndex')->name('payrolls.show');
+Route::get('/payrolls/create/{id}', 'PayrollController@create')->name('payrolls.create');
+Route::post('/payrolls/{id}', 'PayrollController@store')->name('payrolls.store');
+Route::get('/employee/payroll/{id}/edit', 'PayrollController@edit')->name('payrolls.edit');
+Route::patch('/payrolls/update/{id}', 'PayrollController@update')->name('payrolls.update');
 
-Route::resource('departments','DepartmentController');
-Route::resource('roles','RoleController');
-Route::resource('employees','EmployeeController');
+Route::delete('/payrolls/delete/{id}', 'PayrollController@destroy')->name('payrolls.destroy');
+Route::get('/payroll/bin', 'PayrollController@bin')->name('payrolls.bin');
+Route::get('/payroll/restore/{id}', 'PayrollController@restore')->name('payrolls.restore');
+Route::get('/payroll/kill/{id}', 'PayrollController@kill')->name('payrolls.kill');
+
+Route::get('/payrolls/download/{id}','DownloadController@pdfDownload')->name('payrolls.pdf');
+
+Route::resources([
+	'departments' => 'DepartmentController',
+	'roles' => 'RoleController',
+	'employees' => 'EmployeeController',
+]);
+
 
 
 
