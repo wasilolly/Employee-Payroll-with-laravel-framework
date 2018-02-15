@@ -4,26 +4,30 @@
 @section('content')
     <div class="col-lg-12">
 		<h1 class="page-header">Role: {{ $role->name }}</h1>
-		<h1 class="page-header">Salary: {{ $role->salary }}</h1>
+		<h2>Salary: {{ $role->salary }}</h2>
 	</div>
-		
-
+	<br>
 	<table class= "table table-hover">
 		<thead>
 			<th>Employee</th>
-			<th>email</th>
-			<th>phone</th>
-			<th>hired date</th>
+			<th>Email</th>
+			<th>Full-Time</th>
+			<th>Department</th>
 		</thead>
 		
 		<tbody>
 			@if($role->employees->count() > 0)
 				@foreach($role->employees as $employee)
 					<tr>
-						<td>{{ $employee->getFullName() }}</td>
+						<td>{{ $employee->name }}</td>
 						<td>{{ $employee->email }}</td>
-						<td>{{ $employee->phone }}</td>
-						<td>{{ $employee->hired_date }}</td>
+						<td>@if($employee->full_time)
+								<p> Yes</p>
+							@else
+								<p>Part-Time</p>
+							@endif
+						</td>
+						<td>{{ $role->department->name }}</td>
 					</tr>
 				@endforeach
 			@else

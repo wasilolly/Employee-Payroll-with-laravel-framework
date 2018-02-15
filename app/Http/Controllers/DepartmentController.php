@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-    /**
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -56,9 +60,9 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        return view('department.show', ['department'=>Department::where('slug',$slug)->first()]);
     }
 
     /**
@@ -103,6 +107,15 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $department=Department::find($id);
+		
+		foreach($department->roles as $role){
+			$role->delete();			
+		}
+		
+		$department->delete();
+		
+		Session::flash('success', 'department deleted');
+		return redirect()->route('departments.index');
     }
 }

@@ -5,25 +5,24 @@ namespace App\Http\Controllers;
 use App\Payroll;
 use App\Employee;
 use PDF;
-use App\Mail\PayrollIssued;
-use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Http\Request;
 
 class DownloadController extends Controller
 {
+	 public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
    public function pdfDownload($id){
-	   $pdf = PDF::loadview('payroll.download.pdfpayroll',['employee'=>Employee::find($id)]);
-	   return $pdf->download('employee.pdf');
+	   $pdf = PDF::loadview('payroll.download.allpayroll',['employee'=>Employee::find($id)]);
+	   return $pdf->stream('employee.pdf');
    }
    
-   public function notifyEmail($id){
-	   $payroll=Payroll::findorFail($id);
-	   $employee=Employee::findorFail($payroll->employee_id);
-	   if($employee=null){
-		   return redirect()->back();
-	   }
-	 
-	   Mail::to($employee())->send(new OrderShipped($payroll));
-	   return redirect()->back();
+   
+   public function singlePayroll($id){
+	    $pdf = PDF::loadview('payroll.download.singlepayroll',['payroll'=>Payroll::find($id)]);
+	   return $pdf->stream('employee.pdf');
    }
 }

@@ -12,7 +12,7 @@
 
 			<!-- Branding Image -->
 			<a class="navbar-brand" href="{{ url('/') }}">
-				{{ config('app.name', 'Laravel') }}
+				{{ config('app.name', 'Payroll') }}
 			</a>
 		</div>
 
@@ -21,8 +21,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="{{ route('departments.index') }}">Departments</a></li>
 				<li><a href="{{ route('roles.index') }}">Roles</a></li>
-				<li><a href="{{ route('employees.index') }}">Employees</a></li>
-				<li><a href="{{ route('payrolls.index') }}">Payroll</a></li>
+				<li><a href="{{ route('employees.index') }}">Payroll</a></li>				
 			</ul>
 
 			<!-- Right Side Of Navbar -->
@@ -33,6 +32,7 @@
 					<li><a href="{{ route('register') }}">Register</a></li>
 					
 				@else
+					<li><a href="{{ route('home') }}">Dashboard</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
 							{{ Auth::user()->name }} <span class="caret"></span>

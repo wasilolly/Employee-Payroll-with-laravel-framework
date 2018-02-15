@@ -23,4 +23,6 @@ class Employee extends Model
 	public function payrolls(){
 		return $this->hasMany('App\Payroll');
 	}
+	
+	
 }

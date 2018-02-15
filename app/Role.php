@@ -15,7 +15,7 @@ class Role extends Model
 	}
 	
 	public function employees(){
-		return $this->hasMany('App\Employees');
+		return $this->hasMany('App\Employee');
 	}
 	
 }

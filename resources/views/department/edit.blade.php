@@ -2,9 +2,9 @@
 
 @section('content')
 	
-<div class="panel panel-default">
+<div class="panel panel-default col-lg-8">
 	<div class="panel-heading">
-		 Edit Department: {{ $department->name }}
+		<b> Edit Department:</b> {{ $department->name }}
    </div>
    
    <div class="panel-body">

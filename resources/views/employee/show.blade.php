@@ -9,7 +9,7 @@
 	@auth
 		<a href="{{ route('employees.edit',['id'=>$employee->id]) }}" class="btn btn-primary">Edit</a>	
 		<a href="{{ route('employees.destroy',['id'=>$employee->id]) }}" class="btn btn-danger">Delete</a>
-		<a href="{{ route('employees.download',['id'=>$employee->id]) }}" class="btn btn-info">Download PDF</a>
+		<a href="{{ route('payrolls.pdf',['id'=>$employee->id]) }}" class="btn btn-info">Download PDF</a>
 	@endauth
 	
 	<br>

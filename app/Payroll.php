@@ -13,6 +13,7 @@ class Payroll extends Model
 	
 	protected $fillable=['employee_id','over_time','hours','rate','total'];
 	
+	
 	public function employee(){
 		return $this->belongsTo('App\Employee');
 	}
@@ -32,4 +33,6 @@ class Payroll extends Model
 		}
 		return $this->gross = 0;
 	}
+	
+	
 }

@@ -3,11 +3,9 @@
 
 @section('content')
 
-	<div class="col-lg-12">
-		<h1 class="page-header">Employees	
-			<!--input type="text" id="filterInput" onkeyup="filterFunction()" placeholder="Search Employees...."-->
-		</h1>	
-	</div>
+	<hr>	
+		<h1 class="text-center">Employees</h1>	
+	<hr> 
 	
 	<a href="{{ route('employees.create') }}" class="btn btn-primary">Create</a>
 	<a href="{{ route('employees.bin') }}" class="btn btn-danger">Recycle Bin</a>

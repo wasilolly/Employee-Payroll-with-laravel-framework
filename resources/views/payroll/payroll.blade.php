@@ -9,7 +9,7 @@
 	</div>
 
 	<a href="{{ route('payrolls.create', ['id'=>$employee->id]) }}" class="btn btn-primary">Create</a>
-	<a href="{{ route('payrolls.pdf', ['id'=>$employee->id]) }}" class="btn btn-info">PDF</a>
+	<a href="{{ route('payrolls.pdf', ['id'=>$employee->id]) }}" class="btn btn-info">Download all payroll listed</a>
 	<a href="{{ route('payrolls.bin') }}" class="btn btn-danger">Recycle Bin</a>
 
 	<br>
@@ -23,6 +23,7 @@
 		<br>
 		<p><b>Base Salary<b>: 0</p>
 	@endif
+		
 
 	<br>
 
@@ -33,7 +34,7 @@
 			<th>Hours</th>
 			<th>Rate</th>
 			<th>Gross</th>
-			<th>Email Sent</th>
+			<th>Download</th>
 			<th>Edit</th>	
 			<th>Trash</th>
 		</thead>		
@@ -53,15 +54,10 @@
 						<td>{{ $payroll->hours }}</td>
 						<td>{{ $payroll->rate }}</td>
 						<td>{{ $payroll->gross }}</td>
+						
+						<td><a href="{{ route('singlepayroll.pdf', ['id'=>$payroll->id]) }}" class="btn btn-info">PDF</a></td>
 						<td>
-							@if($payroll->notified)
-								<p><b>Yes</b></p>				
-							@else						
-								<a href="#" class="btn btn-info">Email</a>							
-							@endif				
-						</td>
-						<td>
-							<a href="{{ route('payrolls.edit', ['id' => $payroll->id]) }}" class="btn btn-info">Edit</a>
+							<a href="{{ route('payrolls.edit', ['id' => $payroll->id]) }}" class="btn btn-success">Edit</a>
 						</td>
 						<td>
 							<form action="{{ route('payrolls.destroy', ['id' => $payroll->id]) }}" method="POST">
@@ -77,6 +73,6 @@
 					<th colspan="5" class="text-center">Empty</th>
 				</tr>
 			@endif
-		</tbody>						
-	</table>		
+		</tbody>							
+	</table>
 @endsection

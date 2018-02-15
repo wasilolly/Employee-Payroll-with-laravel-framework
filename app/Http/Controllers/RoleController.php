@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\Department;
+use App\Employee;
 use Session;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    /**
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -67,9 +72,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        return view('role.show',['role'=>Role::where('slug',$slug)->first()]);
     }
 
     /**

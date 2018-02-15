@@ -6,19 +6,15 @@ use App\Payroll;
 use App\Employee;
 use App\Role;
 use Session;
+use Paginate;
 use Illuminate\Http\Request;
 
 class PayrollController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(){
-        return view('payroll.index', ['payrolls'=>Payroll::latest()]);
+     public function __construct()
+    {
+        $this->middleware('auth');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -54,7 +50,7 @@ class PayrollController extends Controller
 		$payroll->save();
 		
 		Session::flash('success', 'Payroll Created');
-		return redirect()->route('payrolls.index');	
+		return redirect()->route('payrolls.show',['id'=>$id]);	
     }
 
     /**
@@ -63,9 +59,9 @@ class PayrollController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showIndex($id){
+    public function payrollIndex($id){
 		$employee = Employee::findOrFail($id);
-        return view('payroll.show')->with('employee',$employee);
+        return view('payroll.payroll')->with('employee',$employee);
     }
 
     /**
@@ -104,7 +100,7 @@ class PayrollController extends Controller
 		$payroll->save();
 		
 		Session::flash('success', 'Payroll Updated ready for download');
-		return redirect()->route('payrolls.index');		
+		return redirect()->route('payrolls.show',['id'=>$payroll->employee_id]);			
     }
 
     /**

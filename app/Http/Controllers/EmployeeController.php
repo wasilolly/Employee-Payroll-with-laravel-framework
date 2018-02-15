@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+	 public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
     /**
      * Display a listing of the resource.
      *
@@ -86,7 +91,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('employee.show',['employee'=>Employee::findOrFail($id)]);
     }
 
     /**

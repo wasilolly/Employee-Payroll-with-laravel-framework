@@ -3,10 +3,9 @@
 
 @section('content')
 
-	<div class="col-lg-12">
-		<h1 class="page-header">Create a new role</h1>
-	</div>
-	   	   
+	<hr>	
+		<h1 class="text-center">Roles</h1>	
+	<hr>   	   
 	<form action ="{{ route('roles.store') }}" method="POST">
 		{{ csrf_field() }}
 		

@@ -2,9 +2,9 @@
 
 
 @section('content')
-    <div class="col-lg-12">
-		<h1 class="page-header">Departments</h1>
-	</div>
+   <hr>	
+	<h1 class="text-center">Departments</h1>	
+	<hr>
 		
 	<a href="{{ route('departments.create') }}" class="btn btn-primary">Create</a>
 

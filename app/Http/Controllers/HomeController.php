@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Payroll;
+use App\Employee;
+use App\Role;
+use App\Department;
+use Session;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home',['employees' => Employee::take(4)->get(),
+							'employeesCount' =>Employee::count(),
+							'payrolls'=>Payroll::take(4)->get(),
+							'roles' => Role::count(),
+							'departments' => Department::count()]);
     }
 }
