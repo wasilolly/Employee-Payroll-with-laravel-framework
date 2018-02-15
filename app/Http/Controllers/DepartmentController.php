@@ -19,7 +19,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('department.index', ['departments'=>Department::all()]);
+        return view('department.index', ['departments'=>Department::paginate(5)]);
     }
 
     /**

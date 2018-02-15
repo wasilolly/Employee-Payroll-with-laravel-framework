@@ -44,4 +44,5 @@
 			@endif
 		</tbody>
 	</table>
+	<div class="text-center">{{ $roles->links() }}</div>
 @endsection

@@ -21,8 +21,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('role.index',['roles'=>Role::all(),
-					'departments'=>Department::all()]);
+        return view('role.index',['roles'=>Role::paginate(5)]);
     }
 
     /**

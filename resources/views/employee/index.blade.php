@@ -49,5 +49,6 @@
 				</tr>
 			@endif
 		</tbody>						
-	</table>		
+	</table>
+	<div class="text-center">{{ $employees->links() }}</div>
 @endsection

@@ -4,25 +4,14 @@
 @section('content')
    <hr>	
 	<h1 class="text-center">Departments</h1>	
-	<hr>
-		
+	<hr>		
 	<a href="{{ route('departments.create') }}" class="btn btn-primary">Create</a>
-
 	<table class= "table table-hover">
 		<thead>
-			<th>
-				Department name
-			</th>
-			
-			<th>
-				Edit
-			</th>
-				
-			<th>
-				Delete
-			</th>
-		</thead>
-		
+			<th>Department name</th>			
+			<th>Edit</th>			
+			<th>Delete</th>							
+		</thead>		
 		<tbody>
 			@if($departments->count() > 0)
 				@foreach($departments as $department)
@@ -47,10 +36,8 @@
 				<tr> 
 					<th colspan="5" class="text-center">No Departments yet</th>
 				</tr>
-			@endif
-		
-		</tbody>
-	
+			@endif		
+		</tbody>	
 	</table>
-		
+		<div class="text-center">{{ $departments->links() }}</div>
 @endsection
